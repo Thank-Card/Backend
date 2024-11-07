@@ -1,18 +1,18 @@
-package com.thankscard.global.api.code;
+package com.thankscard.hello.exception;
 
+import com.thankscard.global.api.code.BaseResponse;
+import com.thankscard.global.api.code.ResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-
 @Getter
 @AllArgsConstructor
-public enum Status implements BaseResponse<ResponseDTO> {
+public enum HelloStatus implements BaseResponse<ResponseDTO> {
 
-    // Code 작성 (COMMON: 성공 타입, 2: API Status Code 타입, 001: 사용자 응답 번호)
-    // _OK("COMMON2000", "Success."),
-    // HELLO_TEST_SUCCESS(HttpStatus.OK, "HELLO2000", "Success."),
-    ;
+    HELLO_TEST_ERROR(HttpStatus.BAD_REQUEST, "HELLO4001", "invalid flag"),
+    HELLO_FLAG_NULL_ERROR(HttpStatus.BAD_REQUEST, "HELLO4002", "invalid flag: null")
+    ,;
 
     private final HttpStatus httpStatus;
     private final String errCode;
@@ -27,10 +27,5 @@ public enum Status implements BaseResponse<ResponseDTO> {
                 .errCode(errCode)
                 .message(message)
                 .build();
-    }
-
-    @Override
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
     }
 }
