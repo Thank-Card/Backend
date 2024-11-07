@@ -1,6 +1,6 @@
 package com.thankscard.global.api.handler;
 
-import com.thankscard.global.api.ApiResponse;
+import com.thankscard.global.api.GlobalApiResponse;
 import com.thankscard.global.api.code.ResponseDTO;
 import com.thankscard.global.api.exception.BaseException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,7 +28,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private ResponseEntity<Object> handleExceptionInternal(Exception e, ResponseDTO response,
                                                            HttpHeaders headers, HttpServletRequest request) {
 
-        ApiResponse<Object> body = ApiResponse.onFailure(response.getErrCode(),response.getMessage(),null);
+        GlobalApiResponse<Object> body = GlobalApiResponse.onFailure(response.getErrCode(),response.getMessage(),null);
         WebRequest webRequest = new ServletWebRequest(request);
 
         return super.handleExceptionInternal(
@@ -42,7 +42,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<Object> handleExceptionInternal(Exception e, ResponseDTO responseDTO, HttpHeaders headers, WebRequest request) {
 
-        ApiResponse<Object> body = ApiResponse.onFailure(responseDTO.getErrCode(), responseDTO.getMessage(), null);
+        GlobalApiResponse<Object> body = GlobalApiResponse.onFailure(responseDTO.getErrCode(), responseDTO.getMessage(), null);
 
         return super.handleExceptionInternal(
                 e,

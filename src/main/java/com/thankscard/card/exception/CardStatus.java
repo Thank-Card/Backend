@@ -1,15 +1,17 @@
-package com.thankscard.global.api.code;
+package com.thankscard.card.exception;
 
+import com.thankscard.global.api.code.BaseResponse;
+import com.thankscard.global.api.code.ResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public enum ErrorStatus implements BaseResponse<ResponseDTO> {
+public enum CardStatus implements BaseResponse<ResponseDTO> {
 
     // Error Code 작성 (UNKNOWN: 에러 타입, 5: API Status Code 타입, 001: 사용자 에러 번호)
-    // UNKNOWN_ERROR("UNKNOWN5001", "Unknown error"),
+    CARD_IMAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "CARDIMG4001", "Card Image ID is not exist"),
 
     ;
 
@@ -26,10 +28,5 @@ public enum ErrorStatus implements BaseResponse<ResponseDTO> {
                 .errCode(errCode)
                 .message(message)
                 .build();
-    }
-
-    @Override
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
     }
 }
