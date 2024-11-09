@@ -1,17 +1,19 @@
-package com.thankscard.global.api.code;
+package com.thankscard.card.exception;
 
+import com.thankscard.global.api.code.BaseResponse;
+import com.thankscard.global.api.code.ResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public enum ErrorStatus implements BaseResponse<ResponseDTO> {
+public enum CardStatus implements BaseResponse<ResponseDTO> {
 
     // Error Code 작성 (UNKNOWN: 에러 타입, 5: API Status Code 타입, 001: 사용자 에러 번호)
-    // UNKNOWN_ERROR("UNKNOWN5001", "Unknown error"),
-    TOKEN_USER_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "TOKEN4001", "토큰이 유효하지 않거나 만료되었습니다. 새 토큰을 발급받아 다시 시도해주세요."),
-    TOKEN_USER_FORBIDDEN(HttpStatus.FORBIDDEN, "TOKEN4002", "해당 리소스에 인가되지 않은 사용자의 접근입니다."),
+    CARD_IMAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "CARDIMG4001", "카드 이미지의 아이디가 존재하지 않습니다."),
+    CARD_NOT_FOUND(HttpStatus.NOT_FOUND, "CARD4001", "존재하지 않은 카드입니다."),
+    CARD_SEND_USER_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "CARD4002", "로그인 한 유저만 카드 작성이 가능합니다."),
     ;
 
     private final HttpStatus httpStatus;
@@ -27,10 +29,5 @@ public enum ErrorStatus implements BaseResponse<ResponseDTO> {
                 .errCode(errCode)
                 .message(message)
                 .build();
-    }
-
-    @Override
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
     }
 }
