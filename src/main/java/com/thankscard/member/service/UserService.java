@@ -1,11 +1,13 @@
 package com.thankscard.member.service;
 
+import com.thankscard.member.domain.CustomUserDetails;
 import com.thankscard.member.domain.User;
 import com.thankscard.member.dto.UserDto;
 import com.thankscard.member.dto.UserEditDto;
 import com.thankscard.member.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +47,18 @@ public class UserService {
 
     public void deleteUser(User user) {
         userRepository.delete(user);
+    }
+
+    public User getUserByAuthentication(Authentication authentication) {
+
+        if (authentication != null) {
+            Object principal = authentication.getPrincipal();
+
+            if (principal instanceof CustomUserDetails customUserDetails) {
+                return customUserDetails.getUser();
+            }
+        }
+
+        return null;
     }
 }

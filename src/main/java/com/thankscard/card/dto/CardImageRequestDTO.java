@@ -1,7 +1,6 @@
 package com.thankscard.card.dto;
 
 import com.thankscard.card.domain.CardImage;
-import com.thankscard.card.domain.Category;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 

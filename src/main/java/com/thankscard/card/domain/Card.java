@@ -1,19 +1,20 @@
 package com.thankscard.card.domain;
 
+import com.thankscard.member.domain.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
+@Builder
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 public class Card {
 
     @Id
@@ -33,11 +34,30 @@ public class Card {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    private String sendUser;
-    private String recvUser;
+    private String recvTempUser;
+
+    @Column(name = "received_at")
+    private LocalDateTime receivedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "send_user_id", nullable = false)
+    private User sendUser;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recv_user_id")
+    private User recvUser;
+
 
     @PrePersist
     public void prePersist() {
         this.id = UUID.randomUUID().toString().replaceAll("-", "");
+    }
+
+    public void assignToRecvUser(User recvUser) {
+        if (recvUser != null) {
+            this.recvUser = recvUser;
+            this.recvTempUser = null;
+            this.receivedAt = LocalDateTime.now();
+        }
     }
 }

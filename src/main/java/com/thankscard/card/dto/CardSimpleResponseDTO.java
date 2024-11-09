@@ -1,7 +1,6 @@
 package com.thankscard.card.dto;
 
 import com.thankscard.card.domain.Card;
-import com.thankscard.card.domain.CardImage;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 
@@ -21,8 +20,8 @@ public record CardSimpleResponseDTO(
                 .id(card.getId())
                 .cardImageUrl(card.getCardImage().getImageUrl())
                 .createdAt(card.getCreatedAt())
-                .sendUser(card.getSendUser())
-                .recvUser(card.getRecvUser())
+                .sendUser(card.getSendUser().getName())
+                .recvUser(card.getRecvUser().getName())
                 .build();
     }
 }
