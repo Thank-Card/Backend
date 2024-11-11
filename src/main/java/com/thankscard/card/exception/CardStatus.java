@@ -12,8 +12,9 @@ public enum CardStatus implements BaseResponse<ResponseDTO> {
 
     // Error Code 작성 (UNKNOWN: 에러 타입, 5: API Status Code 타입, 001: 사용자 에러 번호)
     CARD_IMAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "CARDIMG4001", "카드 이미지의 아이디가 존재하지 않습니다."),
-    CARD_NOT_FOUND(HttpStatus.NOT_FOUND, "CARD4001", "존재하지 않은 카드입니다."),
+    CARD_NOT_FOUND(HttpStatus.NOT_FOUND, "CARD4001", "카드가 존재하지 않습니다."),
     CARD_SEND_USER_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "CARD4002", "로그인 한 유저만 카드 작성이 가능합니다."),
+    CARD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "CARDCTG4001", "카드 카테고리가 존재하지 않습니다."),
     ;
 
     private final HttpStatus httpStatus;

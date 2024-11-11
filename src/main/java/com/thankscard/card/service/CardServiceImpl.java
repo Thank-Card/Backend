@@ -27,7 +27,7 @@ public class CardServiceImpl implements CardService {
     private final CardRepository cardRepository;
     private final CardImageRepository cardImageRepository;
     private final S3UploadService s3UploadService;
-    private final String dirPath = "card";
+    private final String dirPath = "image";
 
     // 로그인 정보 불필요
     // 카드 작성
