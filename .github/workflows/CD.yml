@@ -54,6 +54,14 @@ jobs:
           echo "${{ secrets.SWAGGER_YML }}" > ./application-swagger.yml
         shell: bash
 
+      # yml 파일 생성 - jwt
+      - name: make application-jwt.yml
+        run: |
+          cd ./src/main/resources
+          touch ./application-jwt.yml
+          echo "${{ secrets.JWT_YML }}" > ./application-jwt.yml
+        shell: bash
+
       # gradle chmod
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
