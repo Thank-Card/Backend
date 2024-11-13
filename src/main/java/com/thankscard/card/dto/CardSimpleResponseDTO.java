@@ -12,8 +12,9 @@ public record CardSimpleResponseDTO(
         @Schema(description = "카드 이미지 URL", example = "https://www.example.com/image") String cardImageUrl,
         @Schema(description = "사용자 첨부 이미지 URL", example = "https://www.example.com/image") String userImage,
         @Schema(description = "작성 시간", example = "2024-11-05T12:33:46.091Z") LocalDateTime createdAt,
-        @Schema(description = "보낸이", example = "김멋사") String sendUser,
-        @Schema(description = "받는이", example = "이멋사") String recvUser
+        @Schema(description = "보낸유저", example = "김멋사") String sendUser,
+        @Schema(description = "받는유저", example = "이멋사") String recvUser,
+        @Schema(description = "받는이(임시)", example = "이멋사") String recvTempUser
 ) {
 
     public static CardSimpleResponseDTO from(Card card) {
@@ -24,6 +25,7 @@ public record CardSimpleResponseDTO(
                 .createdAt(card.getCreatedAt())
                 .sendUser(card.getSendUser().getName())
                 .recvUser(card.getRecvUser().getName())
+                .recvTempUser(card.getRecvTempUser())
                 .build();
     }
 }

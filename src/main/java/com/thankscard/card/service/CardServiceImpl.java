@@ -171,6 +171,10 @@ public class CardServiceImpl implements CardService {
         Card card = cardRepository.findById(cardId)
                 .orElseThrow(() -> new CardException(CardStatus.CARD_NOT_FOUND));
 
+        if (user == card.getSendUser()) {
+            throw new CardException(CardStatus.CANNOT_ASSIGN_YOUR_CARD); // 403
+        }
+
         card.assignToRecvUser(user);
         cardRepository.save(card);
     }

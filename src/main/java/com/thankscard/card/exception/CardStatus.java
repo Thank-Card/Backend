@@ -14,6 +14,7 @@ public enum CardStatus implements BaseResponse<ResponseDTO> {
     CARD_IMAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "CARDIMG4001", "카드 이미지의 아이디가 존재하지 않습니다."),
     CARD_NOT_FOUND(HttpStatus.NOT_FOUND, "CARD4001", "카드가 존재하지 않습니다."),
     CARD_SEND_USER_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "CARD4002", "로그인 한 유저만 카드 작성이 가능합니다."),
+    CANNOT_ASSIGN_YOUR_CARD(HttpStatus.BAD_REQUEST, "CARD4003" , "자신이 작성한 카드를 직접 소유할 수 없습니다."),
     CARD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "CARDCTG4001", "카드 카테고리가 존재하지 않습니다."),
     ;
 
