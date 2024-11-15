@@ -52,7 +52,8 @@ public class CardServiceImpl implements CardService {
 
         Card card = Card.builder()
                 .sendUser(sendUser)
-                .recvTempUser(cardRequestDTO.dear())
+                .from(cardRequestDTO.from())
+                .dear(cardRequestDTO.dear())
                 .cardImage(cardImage)
                 .userImage(imgPath)
                 .content(cardRequestDTO.content())
