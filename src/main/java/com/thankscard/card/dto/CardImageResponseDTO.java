@@ -9,7 +9,9 @@ import lombok.Builder;
 public record CardImageResponseDTO (
         @Schema(description = "카드 이미지 아이디", example = "1") Long id,
         @Schema(description = "카드 기본 이미지 URL", example = "http://www.example.com/image") String imageUrl,
-        @Schema(description = "카드 카테고리 ID", example = "1") Long categoryId) {
+        @Schema(description = "카드 카테고리 ID", example = "1") Long categoryId,
+        @Schema(description = "카드 카테고리 이름", example = "크리스마스") String categoryName
+) {
 
     public static CardImageResponseDTO from(CardImage cardImage) {
 
@@ -17,6 +19,7 @@ public record CardImageResponseDTO (
                 .id(cardImage.getId())
                 .imageUrl(cardImage.getImageUrl())
                 .categoryId(cardImage.getCategory().getId())
+                .categoryName(cardImage.getCategory().getCategoryName())
                 .build();
     }
 }

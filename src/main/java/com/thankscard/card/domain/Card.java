@@ -34,7 +34,9 @@ public class Card {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    private String recvTempUser;
+    private String from;
+
+    private String dear;
 
     @Column(name = "received_at")
     private LocalDateTime receivedAt;
@@ -56,7 +58,7 @@ public class Card {
     public void assignToRecvUser(User recvUser) {
         if (recvUser != null) {
             this.recvUser = recvUser;
-            this.recvTempUser = null;
+            this.dear = null;
             this.receivedAt = LocalDateTime.now();
         }
     }

@@ -14,7 +14,9 @@ public record CardSimpleResponseDTO(
         @Schema(description = "작성 시간", example = "2024-11-05T12:33:46.091Z") LocalDateTime createdAt,
         @Schema(description = "보낸유저", example = "김멋사") String sendUser,
         @Schema(description = "받는유저", example = "이멋사") String recvUser,
-        @Schema(description = "받는이(임시)", example = "이멋사") String recvTempUser
+        @Schema(description = "보낸이 이름", example = "김멋사") String from,
+
+        @Schema(description = "받는이 이름", example = "이멋사") String dear
 ) {
 
     public static CardSimpleResponseDTO from(Card card) {
@@ -25,7 +27,8 @@ public record CardSimpleResponseDTO(
                 .createdAt(card.getCreatedAt())
                 .sendUser(card.getSendUser().getName())
                 .recvUser(card.getRecvUser().getName())
-                .recvTempUser(card.getRecvTempUser())
+                .from(card.getFrom())
+                .dear(card.getDear())
                 .build();
     }
 }
