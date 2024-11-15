@@ -34,6 +34,7 @@ public class Card {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(name = "from_name")
     private String from;
 
     private String dear;
