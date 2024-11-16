@@ -20,13 +20,14 @@ public record CardSimpleResponseDTO(
 ) {
 
     public static CardSimpleResponseDTO from(Card card) {
+        String name;
         return CardSimpleResponseDTO.builder()
                 .id(card.getId())
                 .cardImageUrl(card.getCardImage().getImageUrl())
                 .userImage(card.getUserImage())
                 .createdAt(card.getCreatedAt())
-                .sendUser(card.getSendUser().getName())
-                .recvUser(card.getRecvUser().getName())
+                .sendUser(card.getSendUser()!=null?card.getSendUser().getName():null)
+                .recvUser(card.getRecvUser()!=null?card.getRecvUser().getName():null)
                 .from(card.getFrom())
                 .dear(card.getDear())
                 .build();
